@@ -127,14 +127,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
           </a>
         </li>
-
-        
           </ul>
     
     </section>
     <!-- /.sidebar -->
   </aside>
-
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -155,33 +152,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           
             <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Kotak Masuk</h3>
+              <h3 class="box-title">Data Peserta</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Nama</th>
-                  <th>Judul Kegiatan</th>
-                  <th>Tanggal</th>
-                  <th>Barcode</th>
-                  
+                  <th>Nama Lengkap</th>
+                  <th>Tanggal Lahir</th>
+                  <th>Tempat Lahir</th>
+                    <th>Tamatan</th>
+                  <th>Waktu Dimulai</th>
+                  <th>Waktu Berakhir</th>
                   
                 </tr>
                 </thead>
                 <tbody>
-              
-                  <?php foreach($data->result() as $row):?>
+                
+                   <?php foreach($data->result() as $row):?>
                     <tr>
-                        <td style="vertical-align: middle;"><?php echo $row->username;?></td>
-                        <td style="vertical-align: middle;"><?php echo $row->judullaporan;?></td>
-                          <td style="vertical-align: middle;"><?php echo $row->date_range;?></td>
-                         <td> <img style="width: 100px;" src="<?php echo base_url().$row->upload_path.'/'.$row->qr_code_path;?>"></td>
-                      
+                        <td style="vertical-align: middle;"><?php echo $row->nama;?></td>
+                        <td style="vertical-align: middle;"><?php echo $row->tanggal_lahir;?></td>
+                        <td style="vertical-align: middle;"><?php echo $row->tempat_tinggal;?></td>
+                         <td style="vertical-align: middle;"><?php echo $row->tamatan;?></td>
+                           <td style="vertical-align: middle;"><?php echo $row->waktu_dimulai;?></td>
+                           <td style="vertical-align: middle;"><?php echo $row->waktu_berakhir;?></td>
+                       
+                       
                     </tr>
-                    <?php endforeach;?>
-                </tbody>
+                  <?php endforeach;?>
+                </tbody>>
               </table>
             </div>
             <!-- /.box-body -->
@@ -245,6 +246,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     })
   })
 </script>
-
 </body>
 </html>

@@ -101,19 +101,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <li class="header">MAIN NAVIGATION</li>
         
         <li>
-         
+       
             <i class=""></i>  <a href="<?php echo base_url(); ?>AdminDispora" > <span>Kotak Masuk</span></a>
             
           </a>
         </li>
 
          <li>
-         
+          
             <i class=""></i> <a href="<?php echo base_url(); ?>AdminDispora/laporan" > <span>Laporan</span></a>
             
           </a>
         </li>
 
+        <li>
+       
+            <i class=""></i>  <a href="<?php echo base_url(); ?>AdminDispora/register_profile" > <span>Register Peserta</span></a>
+            
+          </a>
+        </li>
+
+         <li>
+          
+            <i class=""></i> <a href="<?php echo base_url(); ?>AdminDispora/profile_peserta" > <span>Lihat Peserta</span></a>
+            
+          </a>
+        </li>
         
           </ul>
     
@@ -150,7 +163,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <th>Nama</th>
                   <th>Judul Kegiatan</th>
                   <th>Tanggal</th>
-                 
+                    <th>Laporan</th>
                   <th>Status</th>
                   
                 </tr>
@@ -162,6 +175,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td style="vertical-align: middle;"><?php echo $row->username;?></td>
                         <td style="vertical-align: middle;"><?php echo $row->judullaporan;?></td>
                          <td style="vertical-align: middle;"><?php echo $row->date_range;?></td>
+                           <td>
+                              <a href="<?php echo base_url().$row->upload_path.'/'.$row->laporan_path;?>" target="_blank"> <button type="button" class="btn  btn-warning"><?php echo $row->laporan_path;?></button> </a>
+                          </td>
                         <?php if ( $row->status === 0 ) { ?>
                              <td style="vertical-align: middle;">Terkirim Proses Menunggu Verifikasi Admin Dispora</td>
                         <?php } else if ( $row->status == 1 ) { ?>

@@ -34,6 +34,8 @@ class AdminDispora extends CI_Controller {
 
 		// Load database
 		$this->load->model('laporan_database');
+		// Load database
+		$this->load->model('Peserta_Database');
 	}
 
 	public function index()
@@ -65,6 +67,21 @@ class AdminDispora extends CI_Controller {
 		
 	}
 
+	public function profile_peserta()
+	{
+		if(isset($this->session->userdata['logged_in'])and $_SESSION['logged_in']['role']==='2')
+			{
+				
+				$data['data']=$this->Peserta_Database->get_all_peserta();
+				$this->load->view('admin/dispora/profile_peserta',$data);
+				
+			} else
+			{
+				redirect('Home', 'refresh');
+			}
+		
+	}
+
 	public function terima_laporan(){	
 		if(isset($this->session->userdata['logged_in'])and $_SESSION['logged_in']['role']==='2')
 			{
@@ -80,6 +97,55 @@ class AdminDispora extends CI_Controller {
 			}
 		
 	}
+
+	public function register_profile(){	
+		if(isset($this->session->userdata['logged_in'])and $_SESSION['logged_in']['role']==='2')
+			{
+
+				$this->load->view('admin/dispora/registerprofile');
+				
+				
+			} else
+			{
+				redirect('Home', 'refresh');
+			}
+		
+	}
+
+	public function register_profile_to_database()
+	{
+		if(isset($this->session->userdata['logged_in'])and $_SESSION['logged_in']['role']==='2')
+			{
+				$username=$this->input->post('username');
+				$password=$this->input->post('password');
+				$nama=$this->input->post('nama');
+				$tanggal_lahir=$this->input->post('tanggal_lahir');
+				$tempat_tinggal=$this->input->post('tempat_tinggal');
+				$tamatan=$this->input->post('tamatan');
+				$waktu_dimulai=$this->input->post('waktu_dimulai');
+				$waktu_berakhir=$this->input->post('waktu_berakhir');
+
+				$id_pegawai=$this->Peserta_Database->simpan_peserta(
+		$username,
+		$password, 
+		$nama,
+		$tanggal_lahir,
+		$tempat_tinggal,
+		$tamatan,
+		$waktu_dimulai,
+		$waktu_berakhir
+		);
+					$data= array(
+						'error_message' => "Berhasil Kiriman",
+						);
+				$this->load->view('admin/dispora/registerprofile',$data);
+				
+			} else
+			{
+				redirect('Home', 'refresh');
+			}
+	}
+	
 	
 	public function update_status()
 	{

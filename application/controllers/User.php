@@ -85,7 +85,9 @@ class User extends CI_Controller {
 				$config['max_size']             = 3000;
 				
 
-				$date_range=$this->input->post('reservation');
+			
+				$d=strtotime("+1 Months");
+				$date_range=date("Y-m-d")." - ".date("Y-m-d", $d);
 				$judullaporan=$this->input->post('judullaporan');
 				$id_user=$var['id'];
 				$upload_path=$config['upload_path']  ;

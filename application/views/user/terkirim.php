@@ -167,15 +167,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <tr>
                         <td style="vertical-align: middle;"><?php echo $row->judullaporan;?></td>
                         <td style="vertical-align: middle;"><?php echo $row->date_range;?></td>
-                        <?php if ( $row->status === 0 ) { ?>
+                        <?php if ( $row->status === "0" ) { ?>
                              <td style="vertical-align: middle;">Terkirim Proses Menunggu Verifikasi Admin Dispora</td>
-                        <?php } else if ( $row->status == 1 ) { ?>
+                        <?php } else if ( $row->status == "1" ) { ?>
                              <td style="vertical-align: middle;">Terkirim Proses Menunggu Verifikasi Admin Keuangan</td>
-                        <?php } else if ( $row->status == 2) { ?>
+                        <?php } else if ( $row->status == "2") { ?>
                              <td style="vertical-align: middle;">Terkirim Proses Menunggu Verifikasi Kepala Kantor</td>
-                        <?php } else if ( $row->status == 3 ) { ?>
+                        <?php } else if ( $row->status == "3" ) { ?>
                              <td style="vertical-align: middle;">Diterima</td>
-                        <?php } else { ?>
+                        <?php } else  if ( $row->status === "-99") { ?>
                             <td style="vertical-align: middle;">Ditolak</td>
                         <?php } ; ?>
                        

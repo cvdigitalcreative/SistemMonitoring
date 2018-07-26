@@ -104,6 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
+        
         <li>
        
             <i class=""></i>  <a href="<?php echo base_url(); ?>AdminDispora" > <span>Kotak Masuk</span></a>
@@ -131,7 +132,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
           </a>
         </li>
-       
           </ul>
         </li>
        
@@ -139,6 +139,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </section>
     <!-- /.sidebar -->
   </aside>
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -153,86 +154,79 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <li class="active">Dashboard</li>
       </ol>
     </section>
+     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-xs-12">
-            <?php foreach($data->result() as $row):?>
+        <!-- left column -->
+        <div class="col-md-6">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Register Profile</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <?php echo form_open_multipart('AdminDispora/register_profile_to_database');?>
+               <?php
+                echo "<div class='error_msg'>";
+                if (isset($error_message)) {
+                  echo $error_message;
+                }
+                  echo validation_errors();
+                  echo "</div>";
+                ?>
+              <div class="box-body">
                 <div class="form-group">
-                 
-                  <label for="inputEmail3" class="col-sm-2 control-label">Pengirim</label>
-
-                  <div class="col-sm-10">
-                     <label for="inputEmail3" class="col-sm-2 control-label"><?php echo $row->username; ?></label>
-                    
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Judul</label>
-
-                  <div class="col-sm-10">
-                     <label for="inputEmail3" class="col-sm-2 control-label"><?php echo $row->judullaporan; ?></label>
-                   
-                  </div>
+                  <label for="exampleInputEmail1">Username : </label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                 </div>
 
                  <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Per Tanggal</label>
-
-                  <div class="col-sm-10">
-                     <label for="inputEmail3" class="col-sm-2 control-label"><?php echo $row->date_range; ?></label>
-                   
-                  </div>
+                  <label for="exampleInputEmail1">Password : </label>
+                  <input type="text" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Laporan</label>
-
-                  <div class="col-sm-10">
-                       <?php echo form_open('AdminDispora/download_laporan'); ?>
-                                <input type="hidden" name="path_laporan" value="<?php echo $row->upload_path.'/'.$row->laporan_path;?>"/>
-                                <button type="submit" class="btn btn-info">Download</button> 
-                                 <a href="<?php echo base_url().$row->upload_path.'/'.$row->laporan_path;?>" target="_blank"> <button type="button" class="btn  btn-warning">View</button> </a>
-                             <?php echo form_close(); ?>
-                  </div>
+                  <label for="exampleInputEmail1">Nama Lengkap : </label>
+                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap">
                 </div>
 
-                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Absen</label>
+             <div class="form-group">
+                  <label for="exampleInputEmail1">Tanggal Lahir : </label>
+                  <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Tanggal Lahir">
+                </div>
 
-                  <div class="col-sm-10">
-                       <?php echo form_open('AdminDispora/download_laporan'); ?>
-                                <input type="hidden" name="path_laporan" value="<?php echo $row->upload_path.'/'.$row->absen_path;?>"/>
-                                <button type="submit" class="btn btn-info">Download</button> 
-                                 <a href="<?php echo base_url().$row->upload_path.'/'.$row->absen_path;?>"> <button type="button" class="btn  btn-warning">View</button> </a>
-                             <?php echo form_close(); ?>
-                  </div>
+               <div class="form-group">
+                  <label for="exampleInputEmail1">Tempat Lahir : </label>
+                  <input type="text" class="form-control" id="tempat_tinggal" name="tempat_tinggal" placeholder="Tempat Tinggal">
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Foto</label>
+                  <label for="exampleInputEmail1">Tamatan: </label>
+                  <input type="text" class="form-control" id="tamatan" name="tamatan" placeholder="Tamatan">
+                </div>
 
-                  <div class="col-sm-10">
-                       <?php echo form_open('AdminDispora/download_laporan'); ?>
-                                <input type="hidden" name="path_laporan" value="<?php echo $row->upload_path.'/'.$row->photo_path;?>"/>
-                                <button type="submit" class="btn btn-info">Download</button> 
-                                 <a href="<?php echo base_url().$row->upload_path.'/'.$row->photo_path;?>"> <button type="button" class="btn  btn-warning">View</button> </a>
-                             <?php echo form_close(); ?>
-                  </div>
+               <div class="form-group">
+                  <label for="exampleInputEmail1">Waktu Dimulai : </label>
+                  <input type="date" class="form-control" id="waktu_dimulai" name="waktu_dimulai" placeholder="Waktu Dimulai">
                 </div>
 
                 <div class="form-group">
-                   <?php echo form_open('AdminDispora/update_status'); ?>
-
-                                <input type="hidden" name="id" value="<?php echo $row->id_laporan; ?>"/>
-                                <button type="submit" name="ditolak" class="btn  btn-danger">Ditolak</button> 
-                                <button  type="sumbit" name="diterima"  class="btn btn-success">Diterima</button>
-                             <?php echo form_close(); ?>
+                  <label for="exampleInputEmail1">Waktu Berakhir : </label>
+                  <input type="date" class="form-control" id="waktu_berakhir" name="waktu_berakhir" placeholder="Waktu Berakhir">
                 </div>
-              <?php endforeach;?>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+             <?php echo form_close(); ?>
+          </div>
         </div>
       </div>
     </section>
+      <!-- Main content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -263,40 +257,100 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- jQuery 3 -->
 <script src="<?php echo base_url();?>bower_components/jquery/dist/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="<?php echo base_url();?>bower_components/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url();?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
-<script src="<?php echo base_url();?>bower_components/raphael/raphael.min.js"></script>
-<script src="<?php echo base_url();?>bower_components/morris.js/morris.min.js"></script>
-<!-- Sparkline -->
-<script src="<?php echo base_url();?>bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-<!-- jvectormap -->
-<script src="<?php echo base_url();?>plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="<?php echo base_url();?>plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?php echo base_url();?>bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
+<!-- Select2 -->
+<script src="<?php echo base_url();?>bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="<?php echo base_url();?>plugins/input-mask/jquery.inputmask.js"></script>
+<script src="<?php echo base_url();?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="<?php echo base_url();?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- date-range-picker -->
 <script src="<?php echo base_url();?>bower_components/moment/min/moment.min.js"></script>
 <script src="<?php echo base_url();?>bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- datepicker -->
+<!-- bootstrap datepicker -->
 <script src="<?php echo base_url();?>bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="<?php echo base_url();?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- Slimscroll -->
+<!-- bootstrap color picker -->
+<script src="<?php echo base_url();?>bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="<?php echo base_url();?>plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll -->
 <script src="<?php echo base_url();?>bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="<?php echo base_url();?>plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
 <script src="<?php echo base_url();?>bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url();?>dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>dist/js/demo.js"></script>
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false
+    })
+  })
+</script>
 </body>
 </html>
